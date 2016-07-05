@@ -1,0 +1,60 @@
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+
+
+<html>
+    <head>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="{% static 'css/review.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <title>GitHub Recommendation Engine</title>
+		<style type="text/css">
+			.navbar{
+			margin-top: 20px;
+		}
+</style>
+	</head>
+
+		<div class="page-header">
+			<h1>GitHub Recommendation Engine</h1>
+		</div>
+
+{% block bootstrap3_content %}
+		<div class="container">
+			<nav  class="navbar navbar-default">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="{% url 'recommendations:homepage' %}">Home</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="{% url 'recommendations:repo_list' %}">Repository list</a></li>
+						<li><a href="{% url 'recommendations:review_list' %}">Reviews</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'recommendations:user_review_list' user.username %}">Hello {{ user.username }}</a></li>
+						<li><a href="{% url 'auth:logout' %}">Logout</a></li>
+						{% else %}
+						<li><a href="{% url 'auth:login' %}">Login</a></li>
+						<li><a href="/accounts/register">Register</a></li>
+						{% endif %}
+					</ul>					
+					
+				</div>
+			</nav>
+		</div>
+		<h1>{% block title %}(no title){% endblock %}</h1>
+
+		{% bootstrap_messages %}
+
+		{% block content %}(no content){% endblock %}
+{% endblock %}		
+
+</html>

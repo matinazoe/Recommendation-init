@@ -56,7 +56,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'gitrec.urls'
 
-#LOGIN_REDIRECT_URL = '/reviews/review/user'
+LOGIN_REDIRECT_URL = '/recommendations/review/user'
 
 TEMPLATES = [
     {
@@ -123,5 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
 #AUTH_PROFILE_MPDULE = 'userprofile.UserProfile'

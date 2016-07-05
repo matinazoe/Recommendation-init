@@ -1,0 +1,43 @@
+.page-header {
+    background-color: #20B2AA;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+.container {
+ padding: 0px 0px 0px 0px;
+}
+
+h1 {
+    color: #990099;
+	font-family: 'Lobster';
+}
+body {
+    padding-left: 12px;
+}
+h2 a {
+    color: #990099;
+    font: italic bold 18px/30px Georgia, serif;
+}
+h4 {
+    color: #330033;
+	padding-right: 15px;
+	font:  bold 15px/30px Verdana;
+	font-style: normal;
+	background: #E8E8E8 url("smiley.gif") no-repeat fixed center;
+}
+h6 a {
+    color: #0080ff;
+    font:  bold 14px/30px cursive, serif;
+	font-style: oblique;
+}
+
+p {
+    font-family: Geneva, Georgia, Serif;
+	font-style: italic;
+}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% block title %}
+<h1>Project list</h1>
+{% endblock %}
+
+{% block content %}
+{% if repo_list %}
+<div class="row">
+    {% for repo in repo_list %}
+    <div class="col-xs-6 col-lg-4">
+        <h4><a href="{% url 'recommendations:repo_detail' repo.id %}">
+        {{ repo.name }}
+        </a></h4>
+        <h5>{{ repo.review_set.count }} reviews</h5>
+        <h5>{{ repo.average_rating | floatformat }} average rating</h5>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p>No repos are available.</p>
+{% endif %}
+{% endblock %}
+
