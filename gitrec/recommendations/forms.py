@@ -8,3 +8,8 @@ class ReviewForm(ModelForm):
         widgets = {
             'comment': Textarea(attrs={'cols': 40, 'rows': 15})
         }
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']

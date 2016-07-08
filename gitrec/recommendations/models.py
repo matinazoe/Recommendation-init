@@ -7,6 +7,21 @@ from django.db import models
 import numpy as np
 
 # Create your models here.
+class UserProfile(models.Model):
+	user = models.OneToOneField(User, unique=True)
+	company = models.CharField(max_length=100,blank=True,null=True)
+	location = models.CharField(max_length=250,blank=True)
+	type = models.CharField(max_length=100)
+
+	def __unicode__(self):
+		return "%s's profile" % self.user
+
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        profile, created = UserProfile.objects.get_or_create(user=instance)
+
+from django.db.models.signals import post_save
+post_save.connect(create_profile, sender=User)
 
 class Project(models.Model):
     id = models.IntegerField(primary_key=True)

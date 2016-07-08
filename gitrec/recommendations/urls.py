@@ -30,4 +30,6 @@ urlpatterns = [
     # ex: /review/user - get reviews for the logged user
     url(r'^review/user/(?P<username>\w+)/$', views.user_review_list, name='user_review_list'),
     url(r'^review/user/$', views.user_review_list, name='user_review_list'),
+    url(r'users/(?P<username>\w+)/$',views.UserProfileDetailView, name='profile'),
+    #url(r'users/(?P<profile_id>\w+)/$',views.UserProfileDetailView.as_view(), name='profile'),
 ]

@@ -1,9 +1,12 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from .models import Review, Project
+from .models import Review, Project, UserProfile
 from .forms import ReviewForm
 
+from django.views.generic import ListView, DetailView
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
@@ -14,7 +17,6 @@ def homepage(request):
     return render(request,'recommendations/homepage.html', context)
     
 	
-
 def review_list(request):
     latest_review_list = Review.objects.order_by('-pub_date')[:9]
     context = {'latest_review_list':latest_review_list}
@@ -63,3 +65,23 @@ def user_review_list(request, username=None):
     latest_review_list = Review.objects.filter(user_name=username).order_by('-pub_date')
     context = {'latest_review_list':latest_review_list, 'username':username}
     return render(request, 'recommendations/user_review_list.html', context)
+	
+@login_required
+def UserProfileDetailView(request, username):
+    user=get_object_or_404(User, username=username)
+    id=request.user.id
+    UserProfile.objects.get_or_create(user=user)
+    profile=get_object_or_404(UserProfile, user_id=id)
+    context = {'profile':profile, 'user': user}
+    return render(request, 'user_detail.html', context)
+'''	
+class	UserProfileDetailView(DetailView):
+    model = UserProfile
+    slug_field = "username"
+    template_name = "user_detail.html"
+	
+    def get_object(self,queryset=None):
+        user = super(UserProfileDetailView, self).get_object(queryset)
+        UserProfile.objects.get_or_create(user=user)
+        return user
+'''

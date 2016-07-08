@@ -1,7 +1,7 @@
 import sys, os 
 import pandas as pd
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Winerama.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gitrec.settings")
 
 import django
 django.setup()
